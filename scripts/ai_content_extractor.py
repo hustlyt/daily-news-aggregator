@@ -67,7 +67,7 @@ class AIContentExtractor:
         """
         try:
             # 构建prompt
-            prompt = self.prompt_template.format(html_content=html_content)
+            prompt = self.prompt_template.replace('{html_content}', html_content)
 
             print(f"开始AI内容提取...")
 
