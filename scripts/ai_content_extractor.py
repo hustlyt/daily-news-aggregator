@@ -25,6 +25,8 @@ class AIContentExtractor:
             self.client = openai.Client(api_key=api_key)
             print("使用默认OpenAI API")
         self.model = os.getenv('MODEL_NAME')
+        if not self.model:
+            raise ValueError("MODEL_NAME环境变量未设置")
         
         # 从配置中获取模型参数，使用默认值作为后备
         self.ai_config = ai_config or {}

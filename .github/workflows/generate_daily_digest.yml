@@ -27,6 +27,7 @@ jobs:
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+        MODEL_NAME: ${{ secrets.MODEL_NAME }}
       run: |
         python scripts/daily_aggregator.py
 
