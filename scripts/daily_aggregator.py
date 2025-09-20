@@ -32,7 +32,7 @@ class SmartDailyAggregator:
         ai_config = self.config.get('ai_config', {})
         self.ai_extractor = AIContentExtractor(ai_config)
         self.content_differ = ContentDiffer()
-        self.digest_generator = DigestGenerator()
+        self.digest_generator = DigestGenerator(config=self.config)
 
         # 初始化HTTP会话
         self.session = requests.Session()

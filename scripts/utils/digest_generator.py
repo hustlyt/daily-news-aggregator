@@ -2,13 +2,15 @@ from typing import List, Dict
 from datetime import datetime
 import pytz
 import os
+import glob
 
 
 class DigestGenerator:
     """日报生成器"""
 
-    def __init__(self, timezone: str = "Asia/Shanghai"):
+    def __init__(self, timezone: str = "Asia/Shanghai", config: Dict = None):
         self.timezone = pytz.timezone(timezone)
+        self.config = config or {}
 
     def generate_daily_digest(self, sources_data: Dict[str, Dict], output_path: str) -> bool:
         """生成每日汇总文档"""
@@ -37,6 +39,10 @@ class DigestGenerator:
 
             print(f"每日汇总已生成: {output_path}")
             print(f"包含 {len(sources_data)} 个数据源，{total_new_items} 个新增项目")
+
+            # 清理旧文件
+            self._cleanup_old_files(output_path)
+
             return True
 
         except Exception as e:
@@ -113,6 +119,38 @@ class DigestGenerator:
         # 暂时不添加任何额外信息，保持简洁
 
         return "\n".join(markdown_parts) + "\n"
+
+    def _cleanup_old_files(self, current_file_path: str):
+        """清理旧的Markdown文件，保持文件数量限制"""
+        try:
+            # 从配置中获取最大文件数，默认30
+            max_files = self.config.get('output_config', {}).get('max_files', 30)
+
+            # 获取文件所在目录
+            output_dir = os.path.dirname(current_file_path)
+
+            # 查找所有.md文件
+            md_files = glob.glob(os.path.join(output_dir, "*.md"))
+
+            # 按修改时间排序，最新的在前
+            md_files.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+
+            # 如果文件数量超过限制，删除多余的
+            if len(md_files) > max_files:
+                files_to_delete = md_files[max_files:]
+                for file_path in files_to_delete:
+                    try:
+                        os.remove(file_path)
+                        print(f"🗑️  删除旧文件: {os.path.basename(file_path)}")
+                    except Exception as e:
+                        print(f"删除文件失败 {file_path}: {e}")
+
+                print(f"📝 保留最新的 {max_files} 个文件，删除了 {len(files_to_delete)} 个旧文件")
+            else:
+                print(f"📝 当前有 {len(md_files)} 个文件，未超过限制 {max_files}")
+
+        except Exception as e:
+            print(f"清理旧文件时出错: {e}")
 
     def get_output_filename(self, base_dir: str) -> str:
         """获取输出文件名"""

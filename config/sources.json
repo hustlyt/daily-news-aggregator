@@ -21,5 +21,9 @@
     "max_tokens": 30000,
     "temperature": 0.1,
     "min_confidence": 0.7
+  },
+  "output_config": {
+    "max_files": 30,
+    "output_dir": "data"
   }
 }
