@@ -14,7 +14,7 @@
       "base_url": "https://aiyoubucuo.com/",
       "url_pattern": "{year}{month:02d}.html",
       "icon": "🔧",
-      "enabled": false
+      "enabled": true
     }
   ],
   "ai_config": {

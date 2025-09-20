@@ -91,6 +91,7 @@ class AIContentExtractor:
 
             # 解析返回结果
             result_text = response.choices[0].message.content
+            print(f"AI返回原始内容: {repr(result_text)}")
             result = json.loads(result_text)
 
             print(f"AI提取完成，找到 {len(result.get('recommendations', []))} 个推荐项目")
