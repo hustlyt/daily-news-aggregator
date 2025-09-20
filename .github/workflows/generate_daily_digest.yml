@@ -1,0 +1,46 @@
+name: Generate Daily News Digest
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # 每6小时运行一次
+  workflow_dispatch:  # 手动触发
+
+jobs:
+  generate-digest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: daily-news-aggregator
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Generate daily digest
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+      run: |
+        python scripts/daily_aggregator.py
+
+    - name: Commit and push if changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add data/
+        if git diff --cached --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Update daily news digest - $(date +'%Y-%m-%d %H:%M:%S')"
+          git push
+        fi

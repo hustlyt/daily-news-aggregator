@@ -1,0 +1,26 @@
+{
+  "sources": [
+    {
+      "name": "haikuoshijie",
+      "display_name": "海阔世界",
+      "base_url": "https://haikuoshijie.cn/archives/",
+      "url_pattern": "{year}nian{month}yuetuijian",
+      "icon": "📱",
+      "enabled": true
+    },
+    {
+      "name": "aiyoubucuo",
+      "display_name": "爱优不错",
+      "base_url": "https://aiyoubucuo.com/",
+      "url_pattern": "{year}{month:02d}.html",
+      "icon": "🔧",
+      "enabled": false
+    }
+  ],
+  "ai_config": {
+    "model": "gpt-4o-mini",
+    "max_tokens": 3000,
+    "temperature": 0.1,
+    "min_confidence": 0.7
+  }
+}
