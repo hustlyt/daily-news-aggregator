@@ -2,48 +2,36 @@
 
 > 本文档汇总了今日各大推荐网站的新增内容
 
-## 🔧 爱优不错 (aiyoubucuo)
+## 🔧 哎呦不错 (aiyoubucuo)
 
 **[Meow App - 一个简洁的笔记应用](https://github.com/y-shi23/MeowNocode)**
   
 支持画布模式、力图数据统计、模糊语法、每日回顾、AI 对话等功能可使用 Supabase 或 Cloudflare D1 作为云端数据库
-  
-*日期: 2025-09-20*
 
 **[浏览器翻译插件 - 读蛙](https://github.com/mengxi-ream/read-frog)**
   
 开源沉浸式翻译
-  
-*日期: 2025-09-20*
 
 **[浏览器翻译插件 - 简约翻译](https://github.com/fishjar/kiss-translator)**
   
 一个简约、开源的 双语对照翻译扩展 & 油猴脚本
-  
-*日期: 2025-09-20*
 
 **[浏览器翻译插件 - 流畅阅读](https://github.com/Bistutu/FluentRead)**
   
 开源的沉浸式翻译，一款革命性的浏览器翻译插件
-  
-*日期: 2025-09-20*
 
 **[浏览器翻译插件 - 浸入式学语言助手](https://github.com/xiao-zaiyi/illa-helper)**
   
 帮助你在日常网页浏览中自然地学习语言
-  
-*日期: 2025-09-20*
 
 **[浏览器翻译插件 - 沉浸式翻译（V2）](https://github.com/LOVAHE/Immersive-Translation)**
   
 一个模块化、注重隐私的浏览器翻译扩展
-  
-*日期: 2025-09-20*
 
 
 ---
 
-**更新时间**: 2025-09-20 15:12:13  
+**更新时间**: 2025-09-20 15:21:37  
 **数据源**: 1 个网站  
 **新增项目**: 6 个  
 
