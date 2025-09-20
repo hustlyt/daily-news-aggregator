@@ -18,7 +18,6 @@
     }
   ],
   "ai_config": {
-    "model": "gpt-4o-mini",
     "max_tokens": 3000,
     "temperature": 0.1,
     "min_confidence": 0.7

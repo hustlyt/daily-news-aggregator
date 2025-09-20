@@ -24,10 +24,10 @@ class AIContentExtractor:
         else:
             self.client = openai.Client(api_key=api_key)
             print("使用默认OpenAI API")
-
+        self.model = os.getenv('MODEL_NAME')
+        
         # 从配置中获取模型参数，使用默认值作为后备
         self.ai_config = ai_config or {}
-        self.model = self.ai_config.get('model', 'gpt-4o-mini')
         self.max_tokens = self.ai_config.get('max_tokens', 3000)
         self.temperature = self.ai_config.get('temperature', 0.1)
 
