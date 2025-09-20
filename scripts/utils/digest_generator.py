@@ -67,7 +67,13 @@ class DigestGenerator:
 
             # 添加每个新增项目
             for article in new_articles:
-                lines.append(article.to_markdown())
+                if isinstance(article, dict):
+                    # 处理字典格式的推荐项目
+                    markdown_item = self._dict_to_markdown(article)
+                    lines.append(markdown_item)
+                else:
+                    # 处理有to_markdown方法的对象
+                    lines.append(article.to_markdown())
 
             lines.append("")
 
@@ -83,6 +89,35 @@ class DigestGenerator:
         ])
 
         return "\n".join(lines)
+
+    def _dict_to_markdown(self, article: Dict) -> str:
+        """将字典格式的推荐项目转换为Markdown格式"""
+        title = article.get('title', '未知标题')
+        url = article.get('url', '')
+        description = article.get('description', '')
+
+        # 构建markdown格式
+        markdown_parts = []
+
+        # 标题和链接
+        if url:
+            markdown_parts.append(f"**[{title}]({url})**")
+        else:
+            markdown_parts.append(f"**{title}**")
+
+        # 描述
+        if description:
+            markdown_parts.append(f"  \n{description}")
+
+        # 其他信息（如日期等）
+        additional_info = []
+        if article.get('date'):
+            additional_info.append(f"日期: {article['date']}")
+
+        if additional_info:
+            markdown_parts.append(f"  \n*{' | '.join(additional_info)}*")
+
+        return "\n".join(markdown_parts) + "\n"
 
     def get_output_filename(self, base_dir: str) -> str:
         """获取输出文件名"""
