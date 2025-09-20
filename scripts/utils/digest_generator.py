@@ -109,13 +109,8 @@ class DigestGenerator:
         if description:
             markdown_parts.append(f"  \n{description}")
 
-        # 其他信息（如日期等）
-        additional_info = []
-        if article.get('date'):
-            additional_info.append(f"日期: {article['date']}")
-
-        if additional_info:
-            markdown_parts.append(f"  \n*{' | '.join(additional_info)}*")
+        # 其他信息（如果需要的话可以在这里添加）
+        # 暂时不添加任何额外信息，保持简洁
 
         return "\n".join(markdown_parts) + "\n"
 

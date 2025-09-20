@@ -10,7 +10,7 @@
     },
     {
       "name": "aiyoubucuo",
-      "display_name": "爱优不错",
+      "display_name": "哎呦不错",
       "base_url": "https://aiyoubucuo.com/",
       "url_pattern": "{year}{month:02d}.html",
       "icon": "🔧",
