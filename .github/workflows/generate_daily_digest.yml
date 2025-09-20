@@ -5,6 +5,9 @@ on:
     - cron: '55 15 * * *'  # 每天23:55北京时间执行 (UTC+8)
   workflow_dispatch:  # 手动触发
 
+permissions:
+  contents: write  # 允许写入仓库内容
+
 jobs:
   generate-digest:
     runs-on: ubuntu-latest
@@ -31,14 +34,13 @@ jobs:
       run: |
         python scripts/daily_aggregator.py
 
-    - name: Commit and push if changes
+    - name: Commit files
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add data/
-        if git diff --cached --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m "Update daily news digest - $(date +'%Y-%m-%d %H:%M:%S')"
-          git push
-        fi
+        git add .
+        git commit -m "Generated daily content" || echo "No changes to commit"
+
+    - name: Push changes
+      run: |
+        git push --force https://${{ secrets.PAT }}@github.com/${{ github.repository_owner }}/daily-news-aggregator.git HEAD:main

@@ -64,23 +64,6 @@ class SmartDailyAggregator:
             print(f"加载配置文件失败: {e}")
             sys.exit(1)
 
-    def _get_state_file_path(self, source_name: str) -> str:
-        """获取状态文件路径"""
-        base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        state_dir = os.path.join(base_dir, 'data', 'state')
-        os.makedirs(state_dir, exist_ok=True)
-        return os.path.join(state_dir, f'{source_name}_extracted.json')
-
-    def _load_previous_data(self, state_file: str) -> Dict[str, Any]:
-        """加载上次提取的数据"""
-        try:
-            with open(state_file, 'r', encoding='utf-8') as f:
-                return json.load(f)
-        except FileNotFoundError:
-            return {'recommendations': [], 'page_info': {}}
-        except Exception as e:
-            print(f"加载状态文件失败: {e}")
-            return {'recommendations': [], 'page_info': {}}
 
     def _build_url(self, source_config: Dict[str, Any]) -> str:
         """
@@ -145,13 +128,6 @@ class SmartDailyAggregator:
             print(f"❌ 处理网页内容时出错: {e}")
             return ""
 
-    def _save_current_data(self, state_file: str, data: Dict[str, Any]):
-        """保存当前提取的数据"""
-        try:
-            with open(state_file, 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
-        except Exception as e:
-            print(f"保存状态文件失败: {e}")
 
     def process_source(self, source_config: Dict[str, Any]) -> Dict[str, Any]:
         """处理单个数据源"""
@@ -173,41 +149,21 @@ class SmartDailyAggregator:
                     'status': 'fetch_failed'
                 }
 
-            # 3. AI提取内容
+            # 3. AI提取今日内容
             print(f"  🤖 使用AI提取内容...")
             current_data = self.ai_extractor.extract_recommendations(
                 html_content,
                 source_config
             )
 
-            # 4. 加载历史数据
-            state_file = self._get_state_file_path(source_name)
-            previous_data = self._load_previous_data(state_file)
-
-            # 5. Python差异检测
-            print(f"  📊 检测内容变化...")
-            new_recommendations = self.content_differ.detect_new_recommendations(
-                current_data, previous_data
-            )
-
-            # 6. 应用过滤器
-            min_confidence = self.config.get('ai_config', {}).get('min_confidence', 0.7)
-            filtered_recs = self.content_differ.filter_by_confidence(
-                new_recommendations, min_confidence
-            )
-
-            # 默认启用日期过滤
-            filtered_recs = self.content_differ.filter_by_date_relevance(filtered_recs)
-
-            # 7. 保存当前状态
-            self._save_current_data(state_file, current_data)
-
-            print(f"  ✅ 完成，发现 {len(filtered_recs)} 个新推荐")
+            # 直接使用今日提取的推荐内容
+            recommendations = current_data.get('recommendations', [])
+            print(f"  ✅ 完成，找到 {len(recommendations)} 个今日推荐")
 
             return {
                 'source': source_config,
-                'new_recommendations': filtered_recs,
-                'total_extracted': len(current_data.get('recommendations', [])),
+                'new_recommendations': recommendations,
+                'total_extracted': len(recommendations),
                 'status': 'success'
             }
 
