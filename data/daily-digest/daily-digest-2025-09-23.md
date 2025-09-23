@@ -6,23 +6,23 @@
 
 **[100 款-中秋节国庆节双节海报月亮祖国海报活动宣传推广 psd 设计素材模版](https://pan.quark.cn/s/e537e28d8308)**
   
-包含 100 款中秋节国庆节双节海报、月亮祖国海报、活动宣传推广 PSD 设计素材模板。
+包含中秋节和国庆节双节海报、月亮祖国海报、活动宣传推广的 PSD 设计素材模板。
 
 **[国庆节海报 PSD+JPG](https://pan.quark.cn/s/ff8286d6cee0)**
   
-国庆节海报 PSD 源文件和 JPG 高清图。
+国庆节海报的 PSD 源文件和 JPG 高清图。
 
 **[国庆节放假通知模板 PSD 源文件 +JPG 高清图](https://pan.quark.cn/s/c93d78a62198)**
   
-国庆节放假通知模板，包含 PSD 源文件和 JPG 高清图。
+国庆节放假通知的模板，包含 PSD 源文件和 JPG 高清图。
 
 **[国庆节亲子手工：辣条制作配方及教程](https://pan.quark.cn/s/5d0d99e45604)**
   
-国庆节亲子手工项目，提供辣条制作配方及教程。
+国庆节亲子手工活动，提供辣条制作的配方及教程。
 
 **[21 款-2026 马年日历台历模板](https://pan.baidu.com/s/1TI9XAbzc6I1x1V_Ve0rtIA?pwd=usmd)**
   
-21 款 2026 年马年日历台历模板。
+21 款 2026 马年日历台历模板。
 
 **[TTS Importer](https://tts.yfi.moe/)**
   
@@ -33,7 +33,7 @@
 游戏原声下载站，收录超过 91,000 张专辑和 260 万首曲目，总容量约 30TB，涵盖从 NES、SNES、Switch 到 PS5、PC 等多种平台，支持原声、游戏提取曲、编曲与混音等类型，提供字母索引、平台分类、类型筛选和年份浏览功能，并设有热门排行、随机推荐及搜索入口，单个内容免费下载，但打包下载需要付费。
 
 
-## 🌐 iui.su (iuisu)
+## 🌐 iui.su (不死鸟-分享为王)
 
 **[Nyan Scroll](https://microsoftedge.microsoft.com/addons/detail/nyan-scroll/pmghggnflajdbflaggepoomblfdnhaci)**
   
@@ -50,7 +50,7 @@ Nyan Scroll可以将浏览器滚动条替换为一个充满活力的Nyan Cat，�
 
 ---
 
-**更新时间**: 2025-09-23 21:19:17  
+**更新时间**: 2025-09-23 23:58:19  
 **数据源**: 2 个网站  
 **新增项目**: 10 个  
 
