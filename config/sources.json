@@ -17,7 +17,7 @@
       "enabled": true
     },
     {
-      "name": "iuisu",
+      "name": "不死鸟-分享为王",
       "display_name": "iui.su",
       "base_url": "https://iui.su/",
       "url_pattern": "{sequence}",
