@@ -73,6 +73,7 @@ class SmartDailyAggregator:
         - {year}: 年份 (如: 2025)
         - {month}: 月份 (如: 9)
         - {month:02d}: 补零的月份 (如: 09)
+        - {sequence}: 数字序列，基于起始年月计算 (如: 201)
         """
         base_url = source_config.get('base_url', '')
         url_pattern = source_config.get('url_pattern', '')
@@ -86,9 +87,13 @@ class SmartDailyAggregator:
 
         # 构建URL
         try:
+            # 计算序列号（如果需要）
+            sequence_value = self._calculate_sequence(source_config, now)
+
             path = url_pattern.format(
                 year=now.year,
-                month=now.month
+                month=now.month,
+                sequence=sequence_value
             )
             full_url = base_url + path
             print(f"动态生成URL: {full_url}")
@@ -97,6 +102,27 @@ class SmartDailyAggregator:
             print(f"URL构建失败: {e}")
             # 降级到base_url
             return base_url
+
+    def _calculate_sequence(self, source_config: Dict[str, Any], current_date: datetime) -> int:
+        """
+        计算基于日期的序列号
+
+        配置参数：
+        - start_year: 起始年份
+        - start_month: 起始月份
+        - start_sequence: 起始序列号
+        """
+        start_year = source_config.get('start_year', 2025)
+        start_month = source_config.get('start_month', 1)
+        start_sequence = source_config.get('start_sequence', 200)
+
+        # 计算从起始日期到当前日期的月数差
+        start_date = datetime(start_year, start_month, 1)
+        current_month_start = datetime(current_date.year, current_date.month, 1)
+
+        months_diff = (current_month_start.year - start_date.year) * 12 + (current_month_start.month - start_date.month)
+
+        return start_sequence + months_diff
 
     def _fetch_content_with_requests(self, url: str) -> str:
         """

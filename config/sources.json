@@ -15,6 +15,17 @@
       "url_pattern": "{year}{month:02d}.html",
       "icon": "🔧",
       "enabled": true
+    },
+    {
+      "name": "iuisu",
+      "display_name": "iui.su",
+      "base_url": "https://iui.su/",
+      "url_pattern": "{sequence}",
+      "start_year": 2025,
+      "start_month": 9,
+      "start_sequence": 201,
+      "icon": "🌐",
+      "enabled": true
     }
   ],
   "ai_config": {
